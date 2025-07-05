@@ -301,6 +301,125 @@ audio {
     display: none;
 }
 
+/* СТИЛІ ДЛЯ ГОСТЬОВОЇ КНИГИ */
+.guestbook-section {
+    margin-top: 50px;
+    padding: 30px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.guestbook-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.guestbook-form input[type="text"],
+.guestbook-form textarea {
+    background-color: #f0f0f0; /* Ледь сіруватий фон для полів */
+    border: 1px solid var(--main-accent-light); /* Рамка в кольорі фіолетового */
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1); /* Легка тінь всередині */
+    transition: all 0.3s ease;
+}
+
+.guestbook-form input[type="text"]:focus,
+.guestbook-form textarea:focus {
+    border-color: var(--toxic-yellow); /* При фокусі - токсичний жовтий! */
+    box-shadow: 0 0 8px var(--clashing-red); /* Червона тінь! */
+    outline: none; /* Прибираємо стандартний outline */
+}
+
+.guestbook-form .cta-button {
+    margin-top: 20px; /* Відступ від полів */
+}
+
+.guestbook-entries {
+    margin-top: 40px;
+    border-top: 2px dotted var(--secondary-color);
+    padding-top: 30px;
+}
+
+.guestbook-entry {
+    background-color: #fdfdfd; /* Майже білий фон для записів */
+    border: 1px dashed var(--main-accent-light); /* Пунктирна фіолетова рамка */
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.guestbook-entry .entry-message {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    /* Шрифт уже визначений для .feature-card p, але тут явно пропишемо для Comic Neue */
+    font-family: 'Comic Neue', cursive;
+}
+
+.guestbook-entry .entry-date {
+    font-family: 'Times New Roman', serif; /* Дата - Times New Roman */
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    text-align: right;
+    font-style: italic;
+    margin-top: 10px;
+    border-top: 1px dotted var(--border-subtle);
+    padding-top: 5px;
+}
+
+/* НОВІ СТИЛІ ДЛЯ GOOGLE SEARCH */
+.google-search-section {
+    margin-top: 50px; /* Залишимо, щоб секція пошуку мала відступ, якщо вона не зверху */
+    padding: 30px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Додаткові стилі для секції пошуку, коли вона знаходиться зверху */
+.google-search-section.top-search {
+    margin-top: 20px; /* Невеликий відступ від самого верху вікна */
+    margin-bottom: 50px; /* Більший відступ від наступних елементів */
+    border-radius: 0 0 8px 8px; /* Заокруглюємо тільки низ, якщо він прилягає до верху */
+    border-top: none; /* Прибираємо верхню рамку, якщо вона прилягає до верху */
+}
+
+
+/* Google Custom Search Engine (CSE) часто генерує власні стилі,
+   які важко змінити без використання !important або більш специфічних селекторів.
+   Ми можемо спробувати вплинути на контейнер, але сам пошук може виглядати "нормально".
+   І це навіть краще для нашого "маскування"! */
+.gcse-search {
+    margin: 20px auto;
+    max-width: 600px; /* Обмежимо ширину, щоб не було занадто розтягнутим */
+}
+/* Можливо, для вхідного поля пошуку можна додати деякий крінж */
+input.gsc-input {
+    font-family: 'Comic Neue', cursive !important; /* Насильно Comic Neue! */
+    border: 2px dashed var(--clashing-red) !important; /* Червона пунктирна рамка! */
+    box-shadow: 0 0 5px var(--glitch-pink) !important; /* Рожева тінь! */
+}
+button.gsc-search-button {
+    background-color: var(--secondary-color) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--secondary-color) !important;
+    font-family: 'Arial', sans-serif !important; /* Кнопка Arial, для контрасту */
+    font-weight: bold !important;
+}
+button.gsc-search-button:hover {
+    background-color: var(--main-accent-dark) !important;
+    border-color: var(--main-accent-dark) !important;
+    color: var(--toxic-yellow) !important; /* Токсичний жовтий при наведенні! */
+}
+
+
 /* Анімації та "крінж-стилі", які будуть додані/активовані JavaScript */
 /* Ці анімації НЕ мають бути активні за замовчуванням в CSS,
    але ми їх залишаємо тут як "довідник", або їх можна буде
