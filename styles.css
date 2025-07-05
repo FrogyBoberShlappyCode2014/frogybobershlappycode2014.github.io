@@ -1,0 +1,489 @@
+/* CSS: Стиліфікація від Шляпного Архітектора Абсолютного Безладу (styles.css) */
+:root {
+    --main-purple: #8411ef; /* Улюблений фіолетовий */
+    --light-purple: #9F41F2;
+    --main-green: #32CD32; /* Яскравий зелений */
+    --main-orange: #FF8C00; /* Яскравий помаранчевий */
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-light: #f0f0f0;
+    --border-glitch: #FF00FF; /* Яскравий рожевий для глюків */
+    --toxic-yellow: #FFFF00; /* Отруйний жовтий */
+    --clashing-red: #FF0000; /* Різкий червоний */
+}
+
+/* Якщо у вас є файл шрифту ComicRelief.ttf, розкоментуйте це! */
+/*
+@font-face {
+    font-family: 'Comic Relief';
+    src: url('ComicRelief.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Comic Relief';
+    src: url('ComicRelief-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+*/
+
+body {
+    font-family: 'Comic Relief', 'Comic Sans MS', cursive; /* Тепер з Comic Relief! */
+    background: repeating-linear-gradient(
+        45deg,
+        var(--clashing-red),
+        var(--clashing-red) 10px,
+        var(--toxic-yellow) 10px,
+        var(--toxic-yellow) 20px
+    ); /* Жахливий фоновий паттерн */
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23FF0000"><path d="M12 0L0 12l12 12 12-12L12 0z"/></svg>') 10 10, auto; /* Тепер червоний трикутник-курсор */
+    filter: grayscale(10%) contrast(150%); /* Більш "брудний" вигляд */
+    animation: bodyGlitch 0.5s infinite alternate; /* Постійне тремтіння */
+}
+
+@keyframes bodyGlitch {
+    0% { transform: translateX(0px) translateY(0px); }
+    50% { transform: translateX(2px) translateY(-2px); }
+    100% { transform: translateX(-2px) translateY(2px); }
+}
+
+/* Задній фон з глюками - зробимо більш інтенсивним */
+.glitch-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3; /* Вища прозорість */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="%23FF00FF" opacity="0.6"><path d="M0 0h50v50H0zM50 50h50v50H50z"/></svg>');
+    background-size: 150px 150px; /* Менший розмір для більшої помітності */
+    animation: backgroundGlitch 0.3s infinite step-end; /* Швидше миготіння */
+}
+
+@keyframes backgroundGlitch {
+    0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+    10% { transform: translateX(10px) translateY(-10px) scale(1.05); }
+    30% { transform: translateX(-15px) translateY(5px) scale(0.95); }
+    50% { transform: translateX(20px) translateY(-20px) scale(1.1); }
+    70% { transform: translateX(-25px) translateY(15px) scale(0.9); }
+    90% { transform: translateX(5px) translateY(-5px) scale(1.02); }
+}
+
+.header {
+    background-image: linear-gradient(90deg, var(--main-purple), var(--main-orange));
+    color: var(--text-light);
+    padding: 40px 20px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.4);
+    border-bottom: 7px double var(--main-green);
+    animation: headerEntrance 1s ease-out, headerGlitch 0.1s infinite alternate; /* Додаємо глюк анімацію */
+    position: relative;
+    overflow: hidden;
+    border-image: linear-gradient(45deg, var(--clashing-red), var(--toxic-yellow)) 1; /* Жахлива рамка */
+    border-width: 10px;
+    border-style: solid;
+}
+
+@keyframes headerGlitch {
+    0% { filter: hue-rotate(0deg); transform: scaleX(1); }
+    50% { filter: hue-rotate(90deg); transform: scaleX(1.01); }
+    100% { filter: hue-rotate(0deg); transform: scaleX(1); }
+}
+
+.header h1 {
+    font-family: 'Impact', sans-serif;
+    font-size: 4.0em; /* Збільшимо */
+    text-shadow: 5px 5px 0px var(--main-green), -3px -3px 0px var(--border-glitch);
+    margin: 0;
+    line-height: 1.1;
+    animation: textFlicker 0.2s infinite alternate, colorShift 3s infinite alternate; /* Швидше миготіння, зміна кольору */
+}
+
+@keyframes textFlicker {
+    0% { opacity: 1; transform: skewX(0deg); }
+    50% { opacity: 0.7; transform: skewX(2deg); text-shadow: 4px 4px 0px var(--main-green), -2px -2px 0px var(--border-glitch); }
+    100% { opacity: 1; transform: skewX(0deg); }
+}
+
+@keyframes colorShift {
+    0% { color: var(--text-light); }
+    33% { color: var(--toxic-yellow); }
+    66% { color: var(--clashing-red); }
+    100% { color: var(--text-light); }
+}
+
+.header p {
+    font-size: 1.5em; /* Збільшимо */
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--toxic-yellow); /* Виділимо */
+    animation: blinkText 1s infinite alternate; /* Мигаючий текст */
+}
+
+@keyframes blinkText {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.container {
+    max-width: 900px; /* Зменшимо, щоб було тісніше */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.7); /* Напівпрозорий, щоб фон проглядав */
+    border: 5px dashed var(--main-purple);
+    border-radius: 25px;
+    box-shadow: 15px 15px 0px 0px rgba(0,0,0,0.3), -10px -10px 0px 0px var(--border-glitch);
+    animation: breathe 1s infinite alternate, rotateSkew 5s infinite linear; /* Швидше дихання, постійне обертання/нахил */
+    position: relative;
+    z-index: 1;
+    transform-origin: center;
+    overflow: hidden; /* Щоб приховувати наїзди */
+}
+
+@keyframes breathe {
+    from { transform: scale(1); box-shadow: 15px 15px 0px 0px rgba(0,0,0,0.3), -10px -10px 0px 0px var(--border-glitch); }
+    to { transform: scale(0.98); box-shadow: 18px 18px 0px 0px rgba(0,0,0,0.4), -12px -12px 0px 0px var(--border-glitch); }
+}
+
+@keyframes rotateSkew {
+    0% { transform: rotate(0deg) skew(0deg); }
+    25% { transform: rotate(1deg) skew(1deg); }
+    50% { transform: rotate(0deg) skew(-1deg); }
+    75% { transform: rotate(-1deg) skew(1deg); }
+    100% { transform: rotate(0deg) skew(0deg); }
+}
+
+.section-title {
+    font-family: 'Impact', sans-serif;
+    font-size: 2.8em; /* Збільшимо */
+    color: var(--clashing-red); /* Різкий колір */
+    text-shadow: 3px 3px 0px var(--toxic-yellow); /* Неприємна тінь */
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--main-purple);
+    padding-bottom: 10px;
+    animation: sectionTitleGlitch 0.1s infinite alternate; /* Нервове миготіння */
+}
+
+@keyframes sectionTitleGlitch {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Менші картки */
+    gap: 15px; /* Менші проміжки */
+    margin-top: 30px;
+}
+
+.feature-card {
+    background-color: var(--light-purple);
+    color: var(--text-light);
+    padding: 20px;
+    border-radius: 10px; /* Менш округлі */
+    box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 5px solid var(--toxic-yellow); /* Товста, неприємна рамка */
+    position: relative;
+    overflow: hidden;
+    animation: cardWobble 2s infinite alternate, backgroundPulse 1s infinite; /* Швидше хитання, пульсуючий фон */
+    transform: skewX(3deg); /* Нахилимо картки */
+    font-size: 0.9em; /* Зменшимо шрифт */
+}
+
+@keyframes cardWobble {
+    0% { transform: rotate(0deg) skewX(3deg); }
+    25% { transform: rotate(-2deg) skewX(5deg); }
+    75% { transform: rotate(2deg) skewX(1deg); }
+    100% { transform: rotate(0deg) skewX(3deg); }
+}
+@keyframes backgroundPulse {
+    0% { background-color: var(--light-purple); }
+    50% { background-color: var(--main-green); }
+    100% { background-color: var(--light-purple); }
+}
+
+.feature-card:hover {
+    transform: translateY(-5px) scale(1.01) rotate(5deg) skewX(0deg); /* Навпаки, стабільніша при наведенні */
+    box-shadow: 15px 15px 0px 0px var(--clashing-red); /* Більш агресивна тінь */
+    z-index: 2;
+}
+
+.feature-card h3 {
+    font-size: 1.6em;
+    margin-top: 0;
+    color: var(--clashing-red); /* Різкий колір заголовку картки */
+    text-shadow: 2px 2px 0px var(--toxic-yellow);
+    animation: h3Flash 0.5s infinite; /* Миготіння заголовків */
+}
+@keyframes h3Flash {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.feature-card p {
+    font-size: 1.0em;
+    line-height: 1.4;
+    text-align: justify; /* Вирівнювання по ширині для "безладу" */
+    overflow-wrap: break-word; /* Для нескінченних слів */
+}
+
+.cta-button {
+    display: block; /* Зробимо блочним елементом, щоб зайняв всю ширину */
+    width: 80%; /* Займе більшість ширини */
+    margin: 30px auto; /* Центруємо */
+    background-color: var(--main-green);
+    color: var(--toxic-yellow); /* Різкий колір тексту */
+    padding: 20px 30px; /* Збільшимо розмір */
+    border-radius: 5px; /* Майже без заокруглень */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5em; /* Великий шрифт */
+    border: 5px double var(--clashing-red); /* Подвійна червона рамка */
+    box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.6), -5px -5px 0px 0px var(--border-glitch);
+    transition: all 0.1s ease-in-out;
+    animation: buttonPulse 0.5s infinite alternate, buttonRotate 2s infinite linear; /* Швидке пульсування, обертання */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="%2300FFFF"><circle cx="12" cy="12" r="10"/></svg>') 15 15, pointer; /* Жахливий курсор при наведенні */
+    position: relative;
+    z-index: 10; /* Перекривати все */
+}
+
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); background-color: var(--main-purple); } /* Зміна кольору при пульсуванні */
+}
+@keyframes buttonRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cta-button:hover {
+    background-color: var(--main-orange);
+    border-color: var(--toxic-yellow);
+    transform: translateY(-5px) scale(1.1) rotate(720deg); /* Ще більш агресивно при наведенні */
+    box-shadow: 15px 15px 0px 0px var(--main-purple);
+}
+
+.footer {
+    background-color: var(--main-orange);
+    color: var(--text-light);
+    padding: 30px 20px;
+    margin-top: 50px;
+    border-top: 7px double var(--main-purple);
+    box-shadow: 0 -8px 15px rgba(0,0,0,0.4);
+    font-size: 1.2em;
+    position: relative;
+    overflow: hidden;
+    animation: footerWave 3s infinite ease-in-out; /* Хвилястий футер */
+    text-shadow: 2px 2px 0px var(--clashing-red); /* Тінь для футера */
+}
+
+@keyframes footerWave {
+    0% { transform: skewX(0deg); }
+    50% { transform: skewX(2deg); }
+    100% { transform: skewX(0deg); }
+}
+
+.footer p {
+    margin: 0 0 10px 0;
+    animation: footerTextBlink 2s infinite alternate; /* Мигання тексту у футері */
+}
+@keyframes footerTextBlink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+
+.footer .quote {
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 20px;
+    color: var(--main-green);
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    animation: quoteBounce 1s infinite alternate; /* Швидше миготіння цитати */
+    font-size: 1.5em; /* Збільшимо */
+}
+
+@keyframes quoteBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-10px) scale(1.1); }
+    50% { transform: translateY(0) scale(1); }
+    75% { transform: translateY(-5px) scale(1.05); }
+}
+
+/* Бобер-інженер - хаотичний */
+.engineer-beaver {
+    position: fixed;
+    bottom: 5px; /* Ближче до краю */
+    right: 5px; /* Ближче до краю */
+    font-size: 4em; /* Дуже великий */
+    animation: beaverFloat 2s infinite alternate, beaverSpin 0.5s infinite linear; /* Швидші анімації */
+    z-index: 1001;
+    pointer-events: none;
+    text-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Темний, щоб контрастував */
+    color: var(--toxic-yellow); /* Яскравий текст */
+    border-radius: 0; /* Без заокруглень */
+    padding: 20px; /* Більший паддінг */
+    border: 5px dotted var(--clashing-red); /* Пунктирна червона рамка */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    filter: blur(0.5px); /* Легкий розмиття */
+}
+
+@keyframes beaverFloat {
+    0% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-50px) translateX(20px); }
+    50% { transform: translateY(0) translateX(-30px); }
+    75% { transform: translateY(40px) translateX(10px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+/* Ефект "мерехтіння екрану" - посилимо */
+.screen-glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: rgba(255, 0, 255, 0.15); /* Більш помітний рожевий наліт */
+    opacity: 0;
+    animation: screenFlicker 0.05s infinite; /* ДУЖЕ швидке мерехтіння */
+    z-index: 9999;
+    pointer-events: none; /* Щоб не блокував кліки */
+}
+
+@keyframes screenFlicker {
+    0% { opacity: 0; background-color: rgba(255, 0, 0, 0.1); }
+    25% { opacity: 0.2; background-color: rgba(0, 255, 0, 0.1); }
+    50% { opacity: 0; background-color: rgba(0, 0, 255, 0.1); }
+    75% { opacity: 0.15; background-color: rgba(255, 255, 0, 0.1); }
+    100% { opacity: 0; background-color: rgba(255, 0, 255, 0.1); }
+}
+
+/* Прогрес-бар завантаження - зробимо мигаючим */
+#progressBarContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px; /* Товстіший */
+    background-color: var(--clashing-red); /* Жахливий фон */
+    z-index: 10000;
+    border-bottom: 3px solid var(--toxic-yellow);
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--main-purple);
+    transition: width 0.05s linear; /* Дуже швидкий перехід */
+    animation: progressBarGlitch 0.2s infinite alternate; /* Глючний прогрес-бар */
+}
+
+@keyframes progressBarGlitch {
+    0% { transform: scaleX(1); opacity: 1; }
+    50% { transform: scaleX(0.98); opacity: 0.8; }
+    100% { transform: scaleX(1); opacity: 1; }
+}
+
+/* Прихований контент для демонстрації бажань - хаотичний */
+.hidden-wish-list {
+    display: none;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Темний фон */
+    border: 5px solid var(--toxic-yellow); /* Товста жовта рамка */
+    border-radius: 0; /* Без заокруглень */
+    text-align: left;
+    color: var(--main-green); /* Зелений текст на чорному */
+    font-size: 1.1em;
+    text-shadow: 1px 1px 0px var(--clashing-red);
+    transform: rotate(-2deg); /* Трохи нахилимо */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+    animation: wishListGlitch 0.1s infinite alternate;
+}
+@keyframes wishListGlitch {
+    0% { transform: translateX(0) rotate(-2deg); }
+    50% { transform: translateX(2px) rotate(-1deg); }
+    100% { transform: translateX(0) rotate(-2deg); }
+}
+.hidden-wish-list ul {
+    list-style: disc; /* Звичайні маркери */
+    padding-left: 20px;
+    columns: 1; /* Один стовпець, щоб було незручніше читати */
+}
+.hidden-wish-list li {
+    margin-bottom: 8px;
+    color: var(--main-green); /* Зелений текст */
+    font-weight: normal; /* Звичайний шрифт */
+    animation: listItemFlicker 1s infinite alternate; /* Миготіння елементів списку */
+}
+@keyframes listItemFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+.hidden-wish-list strong {
+    color: var(--toxic-yellow); /* Жовтий виділений текст */
+    text-shadow: none;
+}
+
+/* Стиль для випадкових слів */
+.random-word {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 5px;
+    animation: wordBounce 0.5s infinite alternate;
+}
+@keyframes wordBounce {
+    0% { transform: translateY(0); color: var(--main-purple); }
+    50% { transform: translateY(-3px); color: var(--clashing-red); }
+    100% { transform: translateY(0); color: var(--main-green); }
+}
+
+/* Звуковий елемент */
+audio {
+    display: none; /* Приховаємо, щоб не дратувати розробника */
+}
+
+@keyframes screenShake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    25% { transform: translate(-1px, -2px) rotate(-1deg); }
+    50% { transform: translate(1px, -1px) rotate(1deg); }
+    75% { transform: translate(-1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, 1px) rotate(-1deg); }
+}
+@keyframes textShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    50% { transform: translateX(-1px); }
+    75% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+}
+@keyframes glitchRotate {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
