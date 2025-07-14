@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Загублені у Віртуальній Епопеї (Шляпний Архітектор в Шоці!)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&family=Comic+Neue:wght@400;700&family=Times+New+Roman&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤯❓%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css"> <style>
+        /* Специфічні стилі для 404 сторінки */
+        body {
+            background-color: var(--clashing-red); /* Кричущий червоний фон для паніки */
+            animation: screenShake 0.5s infinite alternate; /* Тремтіння екрану */
+            overflow: hidden; /* Щоб не було скролу від тремтіння */
+        }
+        .container-404 {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 50px;
+            background-color: var(--toxic-yellow); /* Токсичний жовтий контейнер */
+            border: 10px dashed var(--main-accent-light); /* Фіолетова пунктирна рамка */
+            border-radius: 15px;
+            box-shadow: 0 0 30px 10px rgba(0,0,0,0.5); /* Величезна тінь */
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: rotateSkew 5s infinite alternate; /* Обертання і нахил */
+        }
+        .container-404 h1 {
+            font-family: 'Comic Neue', cursive; /* Comic Neue для великого заголовка */
+            font-size: 5em;
+            color: var(--clashing-red); /* Кричущий червоний текст */
+            text-shadow: 8px 8px 0px var(--main-accent-dark), -8px -8px 0px var(--glitch-pink); /* Шалені тіні */
+            margin-bottom: 20px;
+            animation: textFlicker 0.1s infinite alternate; /* Миготіння тексту */
+        }
+        .container-404 p {
+            font-family: 'Times New Roman', serif; /* Times New Roman для параграфів */
+            font-size: 1.5em;
+            color: var(--main-accent-dark); /* Темний фіолетовий */
+            margin-bottom: 30px;
+            animation: blinkText 1s infinite alternate; /* Блимання параграфу */
+        }
+        .container-404 .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            padding: 15px 35px;
+            font-size: 1.3em;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 3px solid var(--clashing-red); /* Червона рамка */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: buttonPulse 0.8s infinite alternate; /* Пульсуюча кнопка */
+        }
+        .container-404 .cta-button:hover {
+            background-color: var(--main-accent-dark); /* Зміна кольору при наведенні */
+            border-color: var(--toxic-yellow); /* Токсична рамка */
+            transform: scale(1.05);
+            color: var(--toxic-yellow); /* Текст стає токсичним */
+        }
+        .footer-404 {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.7); /* Темний фон */
+            color: rgba(255,255,255,0.7);
+            padding: 15px;
+            font-family: 'Times New Roman', serif;
+            font-size: 0.8em;
+            animation: footerTextBlink 0.5s infinite alternate; /* Блимаючий футер */
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch-background activate-glitch-bg"></div> <div class="screen-glitch-overlay activate-screen-glitch"></div> <div class="container-404">
+        <h1>404: ПОМИЛКА! ЗАГУБЛЕНО!</h1>
+        <p>Ква-ква! Гризь-гризь! здається, ви заблукали у віртуальному вимірі нашої епопеї! Це як Windows 95 без робочого столу!</p>
+        <p>Шляпний Архітектор у повному безладі, але не панікуйте! Можливо, ви просто опинилися не там, де потрібно було бути.</p>
+        <p>Чи шукаєте ви:</p>
+        <p style="font-size: 1.2em; color: var(--glitch-pink); font-weight: bold; animation: textFlicker 0.2s infinite alternate;">
+            <span class="random-word activate-text-flicker">Чурчхело-дроти</span>?
+            <span class="random-word activate-text-flicker">Відроджену Opera Crypto</span>?
+            <span class="random-word activate-text-flicker">Nokia P50</span>?
+            <span class="random-word activate-text-flicker">Втрачений файл InterUDTCP</span>?
+        </p>
+        <a href="index.html" class="cta-button">Повернутися на Головну Сторінку (спробувати знову?)</a>
+        <p style="margin-top: 20px; font-size: 0.9em; font-family: 'Comic Neue', cursive; color: var(--main-accent-dark);">
+            *Обережно! Можливі віртуальні бобри на шляху!
+        </p>
+    </div>
+
+    <div class="footer-404">
+        <p>Загублено десь у безмежних просторах <span style="font-weight: bold; color: var(--toxic-yellow);">qp78zx23vy10wk54</span></p>
+        <p>(с) говносайт 1ооо-7 - Навіть тут копірайт!</p>
+    </div>
+
+    <script src="script.js"></script> <script>
+        // Активація анімацій на сторінці 404 (вбудовано, щоб не залежати від script.js)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('activate-body-glitch'); // Активуємо глюки на body
+            // Ці класи вже додані до HTML для автоматичної активації
+            // document.querySelector('.glitch-background').classList.add('activate-glitch-bg');
+            // document.querySelector('.screen-glitch-overlay').classList.add('activate-screen-glitch');
+            // document.querySelector('.container-404 h1').classList.add('activate-text-flicker');
+            // document.querySelector('.container-404 p').classList.add('activate-blink-text');
+            // document.querySelector('.container-404 .cta-button').classList.add('activate-button-glitch');
+            // document.querySelector('.footer-404').classList.add('activate-footer-text-blink');
+        });
+    </script>
+</body>
+</html>
