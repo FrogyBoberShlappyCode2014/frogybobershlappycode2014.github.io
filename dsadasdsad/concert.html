@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Віртуальний Концерт Під DEAF KEV - Invincible! **З Бобрами!**</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&family=Comic+Neue:wght@400;700&family=Times+New+Roman&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎉🔊%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Щоб картинки не виходили за межі */
+        }
+        #concertContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Щоб кліки проходили крізь картинки, якщо потрібно */
+        }
+        .concert-image {
+            position: absolute;
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .image-slogan {
+            position: absolute;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+            user-select: none; /* Щоб текст випадково не виділявся */
+        }
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        #playButton {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #playButton:hover {
+            background-color: var(--main-accent-dark);
+        }
+    </style>
+</head>
+<body>
+    <div id=\"concertContainer\"></div>
+    <div id=\"controls\">\
+        <button id=\"playButton\" onclick=\"togglePlay()\">Увімкнути Концерт! **Бобри готові гризти ритм!**</button>
+    </div>
+
+    <audio id=\"backgroundAudio\" src=\"DEAF KEV - Invincible.mp3\" loop style=\"display: none;\"></audio>
+
+    <script>\
+        const images = [\
+            'funny_image1.jpg', // Хтось явно переплутав двері\
+            'funny_image2.gif', // Кіт, який робить щось незрозуміле\
+            'funny_image3.png', // Смішний мем з бобром\
+            'funny_image4.jpg', // Пес у занадто великих окулярах\
+            'funny_image5.gif', // Зациклене падіння чогось\
+            'funny_image6.png', // Смішний скріншот діалогу\
+            'funny_image7.jpg', // Курка-філософ\
+            'funny_image8.gif', // Танець незграбної людини\
+            'funny_image9.png', // Абсурдна реклама\
+            'funny_image10.jpg', // Морква, яка протестує\
+            'funny_image11.gif', // Щось, що йде не за планом\
+            'funny_image12.png', // Смішний підпис до фото\
+            'funny_image13.jpg', // Їжа, яка виглядає дивно\
+            'funny_image14.gif', // Зависання комп'ютера у невідповідний момент\
+            'funny_image15.png', // Гра слів, яка змушує сміятися і плакати\
+            // Додайте сюди більше шляхів до ваших смішних картинок\
+        ];\
+        const slogans = [\
+            'Ква-ква! Гризь-гризь!',\
+            'Шляпний концерт!',\
+            'Бобри запалюють!',\
+            'Віртуальний рейв!',\
+            'DEAF KEV качає!',\
+            'Сміх до упаду!',\
+            'Windows 95 вітає!',\
+            'InterUDTCP в дії!',\
+            'Слава Україні!',\
+            'Бобер в хаті - Інтернет в порядку!',\
+            'Гризь-гризь, і пікселі літають!',\
+            'Це вам не греблю будувати!',\
+            'Боброва логіка рулить!',\
+            'Ще більше бобрів на концерт!',\
+            // Додайте свої божевільні підписи\
+        ];\
+        let audio = document.getElementById('backgroundAudio');\
+        let isPlaying = false;\
+        let animationInterval;\
+\
+        function getRandom(arr) {\
+            return arr[(Math.random() * arr.length) | 0];\
+        }\
+\
+        function togglePlay() {\
+            if (isPlaying) {\
+                audio.pause();\
+                clearInterval(animationInterval);\
+                document.getElementById('playButton').textContent = 'Увімкнути Концерт! **Бобри готові гризти ритм!**';\
+            } else {\
+                audio.play();\
+                audio.loop = true; // Щоб пісня грала по колу\
+                document.getElementById('playButton').textContent = 'Вимкнути Концерт! **Бобри вже танцюють!**';\
+                startImageAnimation();\
+            }\
+            isPlaying = !isPlaying;\
+        }\
+\
+        function createRandomImage() {\
+            const img = document.createElement('img');\
+            img.src = getRandom(images);\
+            img.classList.add('concert-image');\
+            img.style.left = `${Math.random() * 100}vw`;\
+            img.style.top = `${Math.random() * 100}vh`;\
+            img.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.5})`;\
+            img.style.opacity = Math.random() * 0.8 + 0.2;\
+            img.style.zIndex = Math.floor(Math.random() * 100);\
+            img.style.filter = `hue-rotate(${Math.random() * 360}deg)`; // Додамо трохи божевільних відтінків\
+\
+            const sloganElement = document.createElement('p');\
+            sloganElement.textContent = getRandom(slogans);\
+            sloganElement.classList.add('image-slogan');\
+            sloganElement.style.top = `${parseFloat(img.style.top) + img.offsetHeight * (Math.random() * 0.5 + 0.5)}px`;\
+            sloganElement.style.left = `${parseFloat(img.style.left) + img.offsetWidth * (Math.random() * 0.5 + 0.5)}px`;\
+            sloganElement.style.transform = `rotate(${Math.random() * 180 - 90}deg)`;\
+            sloganElement.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`; // Випадковий яскравий колір\
+            sloganElement.style.fontSize = `${Math.random() * 2 + 1}em`;\
+            sloganElement.style.textShadow = `2px 2px 2px #000`;\
+\
+            document.getElementById('concertContainer').appendChild(img);\
+            document.getElementById('concertContainer').appendChild(sloganElement);\
+\
+            // Видаляємо картинку через деякий час, щоб не перевантажувати сторінку\
+            setTimeout(() => {\
+                img.remove();\
+                sloganElement.remove();\
+            }, 5000); // Картинки зникатимуть через 5 секунд\
+        }\
+\
+        function startImageAnimation() {\
+            animationInterval = setInterval(() => {\
+                createRandomImage();\
+            }, 500); // Нові картинки з'являтимуться кожні півсекунди\
+        }\
+    </script>\
+</body>\
+</html>
