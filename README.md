@@ -69,7 +69,7 @@ funny_imageX.jpg/gif/png: Колекція смішних картинок дл�
 
 Bash
 
-git clone https://github.com/ВАШ_НІКНЕЙМ/frogybobershlappycode2014.github.io.git
+git clone https://github.com/frogybobershlappycode2014/frogybobershlappycode2014.github.io.git
 Переконайтеся, що всі файли (HTML, CSS, JS, аудіо, зображення) знаходяться у відповідних місцях.
 
 Активуйте GitHub Pages для вашого форкнутого репозиторію у налаштуваннях репозиторію.
