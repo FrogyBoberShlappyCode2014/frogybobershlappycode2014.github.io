@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrogyBoberOS - Windows 11 Simulator (OFA - One-File Application)</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🪟%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /*
+         * styles.css
+         * Стилі для FrogyBoberOS - Windows 11 Simulator
+         * Шляпний Архітектор привносить фіолетову гармонію в Windows 11!
+         */
+        
+        :root {
+            --win11-bg: #1a0033; /* Темний фіолетовий фон */
+            --win11-taskbar-bg: rgba(28, 0, 56, 0.7); /* Напівпрозорий темний фіолетовий для панелі завдадань */
+            --win11-start-button-hover: #4d0099; /* Фіолетовий при наведенні на Пуск */
+            --win11-icon-color: #e0e0e0; /* Світло-сірий для іконок */
+            --win11-text-color: #e0e0e0;
+            --win11-border-color: #8a2be2; /* Фіолетовий для меж */
+            --win11-window-bg: #220044; /* Темніший фіолетовий для фону вікон */
+            --win11-window-header-bg: #330066; /* Ще темніший фіолетовий для заголовків вікон */
+            --win11-window-button-hover: #6a1aab; /* Фіолетовий для кнопок вікон при наведенні */
+            --win11-accent-color: #8a2be2; /* Основний фіолетовий акцент */
+            --win11-glow-color: #a64dff; /* Світіння фіолетового */
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif; /* Намагаємося імітувати шрифт Windows */
+            overflow: hidden; /* Щоб запобігти скролінгу */
+            background-color: var(--win11-bg);
+            color: var(--win11-text-color);
+        }
+        
+        /* === Робочий стіл === */
+        .desktop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 48px); /* Висота екрану мінус висота панелі завдань */
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            padding: 10px;
+            background-image: url('https://w.forfun.com/fetch/1a/1a8f6d354b38d39f7ee67397b9131a4f.jpeg'); /* Фіолетові шпалери для Windows 11, можете замінити на свої! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            cursor: pointer;
+            width: 80px; /* Фіксована ширина для іконки */
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        
+        .desktop-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .desktop-icon:active {
+            transform: scale(0.95);
+        }
+        
+        .desktop-icon i {
+            font-size: 3em;
+            color: var(--win11-icon-color);
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Фіолетове світіння */
+        }
+        
+        .desktop-icon span {
+            font-size: 0.85em;
+            color: var(--win11-text-color);
+            word-break: break-word; /* Перенесення довгих назв */
+        }
+        
+        /* === Панель завдань (Taskbar) === */
+        .taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            background-color: var(--win11-taskbar-bg);
+            backdrop-filter: blur(10px); /* Ефект розмиття */
+            display: flex;
+            justify-content: center; /* Центруємо іконки */
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .start-button {
+            height: 100%;
+            width: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-radius: 4px;
+            margin-right: auto; /* Відсуває кнопку "Пуск" вліво */
+            margin-left: 5px;
+        }
+        
+        .start-button:hover {
+            background-color: var(--win11-start-button-hover);
+        }
+        
+        .start-icon {
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 0 5px var(--win11-glow-color)); /* Фіолетове світіння для іконки Пуск */
+        }
+        
+        .taskbar-center-icons {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1; /* Займає доступний простір для центрування */
+        }
+        
+        .taskbar-icon {
+            font-size: 1.2em;
+            color: var(--win11-icon-color);
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .taskbar-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--win11-accent-color);
+        }
+        
+        .taskbar-right {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Відсуває вправо */
+            padding-right: 10px;
+        }
+        
+        .taskbar-time {
+            font-size: 0.9em;
+            margin-right: 15px;
+            color: var(--win11-text-color);
+        }
+        
+        .language-switcher {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        /* === Меню Пуск === */
+        .start-menu {
+            position: absolute;
+            bottom: 58px; /* Вище панелі завдань */
+            left: 50%;
+            transform: translateX(-50%); /* Центруємо горизонтально */
+            width: 500px; /* Ширина меню */
+            max-height: 600px;
+            background-color: var(--win11-taskbar-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            display: none; /* За замовчуванням приховано */
+            flex-direction: column;
+            z-index: 100; /* Перекриває інші елементи */
+            animation: fadeInScale 0.2s ease-out; /* Анімація появи */
+        }
+        
+        .start-menu.show {
+            display: flex;
+        }
+        
+        .start-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .start-menu-header h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: var(--win11-accent-color);
+        }
+        
+        .start-menu-header .profile {
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        
+        .start-menu-header .profile i {
+            font-size: 1.8em;
+            margin-right: 8px;
+            color: var(--win11-icon-color);
+        }
+        
+        .start-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 колонки для додатків */
+            gap: 15px;
+            flex-grow: 1; /* Займає доступний простір */
+        }
+        
+        .start-menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 5px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: center;
+        }
+        
+        .start-menu-item:hover {
+            background-color: var(--win11-start-button-hover);
+            transform: scale(1.02);
+        }
+        
+        .start-menu-item i {
+            font-size: 2.5em;
+            color: var(--win11-icon-color);
+            margin-bottom: 8px;
+        }
+        
+        .start-menu-item span {
+            font-size: 0.85em;
+            color: var(--win11-text-color);
+        }
+        
+        .start-menu-footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: right;
+        }
+        
+        .power-options {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .power-options:hover {
+            background-color: var(--win11-start-button-hover);
+        }
+        
+        .power-options i {
+            margin-right: 8px;
+            color: var(--win11-icon-color);
+        }
+        
+        /* === Вікна додатків === */
+        .window {
+            position: absolute;
+            background-color: var(--win11-window-bg);
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            min-width: 300px;
+            min-height: 200px;
+            resize: both; /* Дозволяє змінювати розмір вікна */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--win11-border-color);
+            z-index: 50; /* Щоб вікна були над робочим столом */
+        }
+        
+        .window-header {
+            background-color: var(--win11-window-header-bg);
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: grab; /* Курсор для перетягування */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .window-header span {
+            font-weight: bold;
+            color: var(--win11-text-color);
+            font-size: 0.9em;
+        }
+        
+        .window-buttons {
+            display: flex;
+        }
+        
+        .window-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: var(--win11-icon-color);
+        }
+        
+        .window-button:hover {
+            background-color: var(--win11-window-button-hover);
+        }
+        
+        .window-button.close:hover {
+            background-color: #e81123; /* Червоний для кнопки закриття */
+            color: white;
+        }
+        
+        .window-content {
+            flex-grow: 1; /* Заповнює весь доступний простір */
+            padding: 15px;
+            overflow-y: auto; /* Дозволяє скролити вміст вікна */
+            color: var(--win11-text-color);
+            font-size: 0.95em;
+        }
+        
+        /* === Анімації === */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="desktop">
+        <div class="desktop-icon" id="myComputerIcon">
+            <i class="fas fa-desktop"></i>
+            <span>Мій Комп'ютер</span>
+        </div>
+        <div class="desktop-icon" id="recycleBinIcon">
+            <i class="fas fa-trash"></i>
+            <span>Кошик</span>
+        </div>
+        <div class="desktop-icon" id="browserIcon">
+            <i class="fas fa-globe"></i>
+            <span>Бобровий Браузер</span>
+        </div>
+        <div class="desktop-icon" id="settingsIcon">
+            <i class="fas fa-cog"></i>
+            <span>Налаштування OS</span>
+        </div>
+    </div>
+
+    <div class="taskbar">
+        <div class="start-button" id="startButton">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🪟%3C/text%3E%3C/svg%3E" alt="Start" class="start-icon">
+        </div>
+        <div class="taskbar-center-icons">
+            <i class="fas fa-search taskbar-icon"></i>
+            <i class="fas fa-folder taskbar-icon"></i>
+            <i class="fas fa-store taskbar-icon"></i>
+            <i class="fas fa-microsoft taskbar-icon"></i>
+        </div>
+        <div class="taskbar-right">
+            <span id="timeDisplay" class="taskbar-time"></span>
+            <span class="taskbar-icon"><i class="fas fa-wifi"></i></span>
+            <span class="taskbar-icon"><i class="fas fa-volume-up"></i></span>
+            <span class="taskbar-icon"><i class="fas fa-battery-half"></i></span>
+            <span class="taskbar-icon language-switcher">UA</span>
+        </div>
+    </div>
+
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-header">
+            <h3>FrogyBoberOS</h3>
+            <div class="profile">
+                <i class="fas fa-user-circle"></i>
+                <span>qp78zx23vy10wk54</span>
+            </div>
+        </div>
+        <div class="start-menu-grid">
+            <div class="start-menu-item">
+                <i class="fas fa-calculator"></i>
+                <span>Калькулятор</span>
+            </div>
+            <div class="start-menu-item">
+                <i class="fas fa-paint-brush"></i>
+                <span>Paint Бобровий</span>
+            </div>
+            <div class="start-menu-item">
+                <i class="fas fa-file-alt"></i>
+                <span>Блокнот</span>
+            </div>
+            <div class="start-menu-item">
+                <i class="fas fa-terminal"></i>
+                <span>Термінал</span>
+            </div>
+            <div class="start-menu-item">
+                <i class="fas fa-gamepad"></i>
+                <span>Ігри</span>
+            </div>
+            <div class="start-menu-item">
+                <i class="fas fa-cogs"></i>
+                <span>Системні Інструменти</span>
+            </div>
+        </div>
+        <div class="start-menu-footer">
+            <div class="power-options">
+                <i class="fas fa-power-off"></i>
+                <span>Вимкнути</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="windowContainer"></div>
+
+    <script>
+        // script.js
+        // Логіка для FrogyBoberOS - Windows 11 Simulator
+        // Шляпний Архітектор змушує біти танцювати!
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const startButton = document.getElementById('startButton');
+            const startMenu = document.getElementById('startMenu');
+            const timeDisplay = document.getElementById('timeDisplay');
+            const windowContainer = document.getElementById('windowContainer');
+            const desktopIcons = document.querySelectorAll('.desktop-icon');
+        
+            let zIndexCounter = 1000; // Для управління z-index вікон
+        
+            // --- Оновлення часу на панелі завдань ---
+            function updateTime() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                timeDisplay.textContent = `${hours}:${minutes}`;
+            }
+            setInterval(updateTime, 1000);
+            updateTime(); // Викликаємо одразу, щоб відобразити час при завантаженні
+        
+            // --- Відкриття/Закриття меню Пуск ---
+            startButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Запобігаємо закриттю при кліку на кнопку
+                startMenu.classList.toggle('show');
+            });
+        
+            // Закриття меню Пуск при кліку поза ним
+            document.addEventListener('click', (event) => {
+                if (!startMenu.contains(event.target) && !startButton.contains(event.target)) {
+                    startMenu.classList.remove('show');
+                }
+            });
+        
+            // --- Управління вікнами ---
+            function createWindow(id, title, contentHTML, initialX, initialY) {
+                const existingWindow = document.getElementById(id);
+                if (existingWindow) {
+                    // Якщо вікно вже відкрито, просто перенесемо його на передній план
+                    focusWindow(existingWindow);
+                    return;
+                }
+        
+                const windowElement = document.createElement('div');
+                windowElement.classList.add('window');
+                windowElement.id = id;
+                windowElement.style.left = `${initialX}px`;
+                windowElement.style.top = `${initialY}px`;
+                windowElement.style.zIndex = zIndexCounter++; // Переносимо на передній план
+        
+                windowElement.innerHTML = `
+                    <div class="window-header">
+                        <span>${title}</span>
+                        <div class="window-buttons">
+                            <div class="window-button minimize" title="Згорнути">
+                                <i class="fas fa-minus"></i>
+                            </div>
+                            <div class="window-button maximize" title="Розгорнути">
+                                <i class="fas fa-square"></i>
+                            </div>
+                            <div class="window-button close" title="Закрити">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window-content">${contentHTML}</div>
+                `;
+        
+                windowContainer.appendChild(windowElement);
+        
+                const header = windowElement.querySelector('.window-header');
+                const closeBtn = windowElement.querySelector('.window-button.close');
+                const minimizeBtn = windowElement.querySelector('.window-button.minimize');
+                const maximizeBtn = windowElement.querySelector('.window-button.maximize');
+        
+                // Перетягування вікна
+                let isDragging = false;
+                let offsetX, offsetY;
+        
+                header.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    offsetX = e.clientX - windowElement.getBoundingClientRect().left;
+                    offsetY = e.clientY - windowElement.getBoundingClientRect().top;
+                    windowElement.style.cursor = 'grabbing';
+                    focusWindow(windowElement); // Фокусуємо вікно при перетягуванні
+                });
+        
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    windowElement.style.left = `${e.clientX - offsetX}px`;
+                    windowElement.style.top = `${e.clientY - offsetY}px`;
+                });
+        
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    windowElement.style.cursor = 'grab';
+                });
+        
+                // Кнопки управління вікном
+                closeBtn.addEventListener('click', () => {
+                    windowElement.remove();
+                });
+        
+                minimizeBtn.addEventListener('click', () => {
+                    // Тут можна додати логіку для згортання в панель завдань
+                    windowElement.style.display = 'none'; // Проста імітація згортання
+                });
+                
+                maximizeBtn.addEventListener('click', () => {
+                    if (windowElement.classList.contains('maximized')) {
+                        windowElement.classList.remove('maximized');
+                        windowElement.style.width = ''; // Повертаємо початковий розмір
+                        windowElement.style.height = '';
+                        windowElement.style.left = `${initialX}px`; // Повертаємо на початкову позицію
+                        windowElement.style.top = `${initialY}px`;
+                    } else {
+                        windowElement.classList.add('maximized');
+                        windowElement.style.width = '100vw'; // Розгортаємо на весь екран
+                        windowElement.style.height = 'calc(100vh - 48px)'; // Мінус панель завдань
+                        windowElement.style.left = '0';
+                        windowElement.style.top = '0';
+                    }
+                });
+        
+                // Фокус вікна при кліку на нього
+                windowElement.addEventListener('mousedown', () => {
+                    focusWindow(windowElement);
+                });
+        
+                return windowElement;
+            }
+        
+            function focusWindow(windowToFocus) {
+                // Знижуємо z-index всіх вікон
+                document.querySelectorAll('.window').forEach(win => {
+                    win.style.zIndex = 50; // Базовий z-index для неактивних вікон
+                });
+                // Підвищуємо z-index активного вікна
+                windowToFocus.style.zIndex = zIndexCounter++;
+            }
+        
+            // --- Відкриття вікон з іконок робочого столу ---
+            desktopIcons.forEach(icon => {
+                icon.addEventListener('dblclick', () => {
+                    const id = icon.id.replace('Icon', 'Window');
+                    let title = icon.querySelector('span').textContent;
+                    let content = '';
+                    let x = 100 + Math.random() * 50; // Випадкові координати для імітації "каскаду"
+                    let y = 50 + Math.random() * 50;
+        
+                    switch (icon.id) {
+                        case 'myComputerIcon':
+                            title = 'Мій Комп\'ютер';
+                            content = `<p>Тут ви бачите віртуальні диски вашої FrogyBoberOS! Нажаль, вони порожні. Гризь-гризь!</p>
+                                       <p>C:\\ &nbsp;&nbsp;&nbsp;&nbsp;[Вільне місце: 0 KB]</p>
+                                       <p>D:\\ &nbsp;&nbsp;&nbsp;&nbsp;[Вільне місце: 0 KB]</p>
+                                       <p>E:\\ &nbsp;&nbsp;&nbsp;&nbsp;[Вільне місце: 0 KB]</p>`;
+                            break;
+                        case 'recycleBinIcon':
+                            title = 'Кошик';
+                            content = '<p>Кошик пустий, як боброва гребля без гілок! Тут немає цифрового сміття, поки що.</p>';
+                            break;
+                        case 'browserIcon':
+                            title = 'Бобровий Браузер';
+                            content = `<iframe src="https://www.google.com/search?q=Бобри" style="width:100%; height:calc(100% - 20px); border:none;"></iframe>
+                                       <p style="font-size:0.8em; margin-top:10px; text-align:center;">Шляпний Архітектор довіряє лише Google!</p>`;
+                            break;
+                        case 'settingsIcon':
+                            title = 'Налаштування FrogyBoberOS';
+                            content = `<p>Ласкаво просимо в Налаштування FrogyBoberOS! Тут ви можете: </p>
+                                        <ul>
+                                            <li>Змінити фіолетові шпалери (нічого не зміниться)</li>
+                                            <li>Налаштувати звук (тиша, як у бобровому дуплі)</li>
+                                            <li>Оновити систему (неможливо, бо це симуляція)</li>
+                                            <li>Перевірити версію: FrogyBoberOS 11.0.2025 (Build Бобер-3000)</li>
+                                        </ul>`;
+                            break;
+                        default:
+                            title = 'Вікно Додатку';
+                            content = '<p>Це стандартне вікно додатку FrogyBoberOS.</p>';
+                    }
+                    createWindow(id, title, content, x, y);
+                });
+            });
+        
+            // --- Відкриття вікон з меню Пуск ---
+            document.querySelectorAll('.start-menu-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    startMenu.classList.remove('show'); // Закриваємо меню Пуск
+                    const id = item.querySelector('span').textContent.replace(/\s/g, '') + 'Window';
+                    let title = item.querySelector('span').textContent;
+                    let content = '';
+                    let x = 150 + Math.random() * 50;
+                    let y = 100 + Math.random() * 50;
+        
+                    switch (item.querySelector('i').classList[1]) {
+                        case 'fa-calculator':
+                            title = 'Калькулятор Бобра';
+                            content = '<p>Це калькулятор для підрахунку згризених гілок. 1+1=МНОГО!</p>';
+                            break;
+                        case 'fa-paint-brush':
+                            title = 'Paint Бобровий';
+                            content = '<p>Тут ви можете малювати свої боброві шедеври! Фарби тільки фіолетові!</p>';
+                            break;
+                        case 'fa-file-alt':
+                            title = 'Блокнот Бобра';
+                            content = '<textarea style="width:98%; height:calc(100% - 20px); border:1px solid var(--win11-border-color); background-color:rgba(0,0,0,0.2); color:var(--win11-text-color); padding:5px; resize:none;" placeholder="Пишіть свої боброві мемуари..."></textarea>';
+                            break;
+                        case 'fa-terminal':
+                            title = 'Термінал FrogyBoberOS';
+                            content = '<div style="background-color:black; color:#00FF00; height:100%; padding:10px; font-family:monospace; overflow-y:auto;">FrogyBoberOS Console [Версія 11.0.2025]<br>(c) Корпорація Шляпного Архітектора. Всі права захищені.<br><br>C:\\Users\\Bober&gt; _</div>';
+                            break;
+                        case 'fa-gamepad':
+                            title = 'Ігри Бобра';
+                            content = '<p>Гра "Згризи Гілку": Натисніть "Start" і гризіть!</p>';
+                            break;
+                        case 'fa-cogs':
+                            title = 'Системні Інструменти';
+                            content = '<p>Тут бобри оптимізують систему, видаляючи зайвий сміття (наприклад, файли Windows 95).</p>';
+                            break;
+                        default:
+                            content = '<p>Це загальний додаток з меню Пуск.</p>';
+                    }
+                    createWindow(id, title, content, x, y);
+                });
+            });
+        
+            // --- "Вимкнути" опція ---
+            document.querySelector('.power-options').addEventListener('click', () => {
+                alert('FrogyBoberOS вимикається... Або прикидається. Гризь-гризь!');
+                // Тут можна додати логіку для затемнення екрану або перенаправлення
+            });
+        });
+    </script>
+</body>
+</html>
