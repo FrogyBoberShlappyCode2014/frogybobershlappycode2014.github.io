@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrogyBoberShlappyCode2014 - ВІРТУАЛЬНИЙ ТЕРМІНАЛ (ДОС/БоберОС)!</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💻🚀%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css"> <style>
+        /* Стилі, специфічні для терміналу */
+        body {
+            background-color: #000; /* Чорний фон для терміналу */
+            color: #0F0; /* Яскраво-зелений текст як у старих консолях */
+            font-family: 'VT323', monospace; /* Моноширинний шрифт для імітації терміналу */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden; /* Приховуємо скролл */
+            padding: 20px;
+            box-sizing: border-box;
+            cursor: none; /* Приховуємо стандартний курсор, буде свій */
+        }
+
+        /* Загальні glitch-ефекти з основного styles.css можуть бути тут активовані */
+        .glitch-background, .screen-glitch-overlay {
+            opacity: 0.3; /* Зробимо їх менш інтенсивними для терміналу */
+            animation: none; /* Вимкнемо анімацію фонового глюку, якщо вона заважає */
+        }
+        .activate-glitch-bg, .activate-screen-glitch {
+             animation: glitchBackground 5s infinite linear, screenGlitch 0.5s infinite alternate; /* Повернути анімацію, якщо вона потрібна */
+        }
+
+
+        #terminal-container {
+            flex-grow: 1;
+            background-color: rgba(0, 0, 0, 0.9); /* Трохи прозорий фон */
+            border: 2px solid #0F0;
+            padding: 10px;
+            overflow-y: auto; /* Скролл для виводу */
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Світіння */
+            position: relative;
+            font-size: 1.1em; /* Збільшимо розмір шрифту */
+            line-height: 1.3;
+            max-height: calc(100vh - 80px); /* Залишимо місце для вводу та курсора */
+            display: flex;
+            flex-direction: column-reverse; /* Щоб нові команди з'являлися знизу */
+        }
+
+        #terminal-output div {
+            padding: 2px 0;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            white-space: pre-wrap; /* Зберігаємо пробіли і переносимо текст */
+            word-break: break-all; /* Розбиваємо слова, якщо вони занадто довгі */
+            position: relative;
+            padding-top: 5px;
+        }
+
+        .terminal-input-line span {
+            display: inline-block; /* Для коректного відображення курсора */
+        }
+
+        #terminal-input {
+            background-color: transparent;
+            border: none;
+            color: #0F0;
+            font-family: 'VT323', monospace;
+            font-size: 1.1em;
+            width: calc(100% - 20px); /* Мінус розмір префікса */
+            outline: none;
+            caret-color: transparent; /* Приховуємо стандартний текстовий курсор */
+            position: absolute; /* Позиціонуємо поверх, щоб курсор блимав у тексті */
+            top: 0;
+            left: 0;
+            padding: 0;
+            margin: 0;
+            z-index: 10;
+        }
+
+        #cursor {
+            background-color: #0F0;
+            width: 10px;
+            height: 1.1em; /* Висота як у тексту */
+            display: inline-block;
+            animation: blink 0.7s infinite step-end;
+            vertical-align: middle; /* Вирівнювання по центру з текстом */
+            margin-left: 2px;
+            position: relative;
+            top: -1px; /* Трохи підняти, якщо потрібно вирівняти */
+        }
+
+        @keyframes blink {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .terminal-prefix {
+            color: #FF0; /* Жовтий префікс */
+            margin-right: 5px;
+            flex-shrink: 0; /* Щоб не стискався */
+        }
+
+        .error-message {
+            color: #F00; /* Червоний текст для помилок */
+        }
+
+        .info-message {
+            color: #0FF; /* Блакитний для інформації */
+        }
+
+        .success-message {
+            color: #0F0; /* Зелений для успіху */
+        }
+
+        .warning-message {
+            color: #FF0; /* Жовтий для попереджень */
+        }
+
+        /* Додамо ефект старого CRT монітора */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                rgba(0, 0, 0, 0.2) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.1; /* Ледь помітні лінії */
+        }
+
+        /* Курсор миші, який теж буде "термінальним" */
+        #custom-cursor {
+            position: absolute;
+            background-color: #0F0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%; /* Круглий курсор */
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease-out; /* Плавніше рух */
+            box-shadow: 0 0 5px #0F0, 0 0 10px rgba(0, 255, 0, 0.5); /* Світіння */
+        }
+
+        .footer {
+            display: none; /* Приховуємо основний футер, якщо він заважає */
+        }
+    </style>
+</head>
+<body class="activate-glitch-bg activate-screen-glitch">
+    <div class="glitch-background"></div>
+    <div class="screen-glitch-overlay"></div>
+
+    <div id="terminal-container">
+        <div id="terminal-output">
+            </div>
+        <div class="terminal-input-line">
+            <span class="terminal-prefix">C:\BOBER_OS></span>
+            <span id="typed-command-display"></span><span id="cursor"></span>
+            <input type="text" id="terminal-input" autofocus autocapitalize="off" autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+
+    <div id="custom-cursor"></div>
+
+    <script src="terminal_script.js"></script>
+</body>
+</html>
