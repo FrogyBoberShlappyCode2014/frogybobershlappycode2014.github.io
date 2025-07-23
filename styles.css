@@ -676,3 +676,33 @@ button.gsc-search-button:hover {
     50% { transform: translateY(-3px); color: var(--clashing-red); }
     100% { transform: translateY(0); color: var(--secondary-color); }
 }
+/* Додайте ці стилі до вашого styles.css */
+
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--secondary-color-dark); /* Темніший колір для футера */
+    color: white;
+    font-size: 0.9em;
+    border-top: 2px solid var(--main-accent); /* Фіолетова лінія зверху */
+    margin-top: 40px;
+    position: relative;
+    z-index: 10; /* Щоб був над глюками, якщо вони на весь екран */
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: var(--main-accent); /* Фіолетовий колір для іконок */
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Щоб transform працював */
+}
+
+.social-icons a:hover {
+    color: #fff; /* Білий при наведенні */
+    transform: scale(1.2) rotate(10deg); /* Трохи анімації, бо бобри люблять рух */
+    text-shadow: 0 0 8px var(--main-accent-light); /* Світіння при наведенні */
+}
