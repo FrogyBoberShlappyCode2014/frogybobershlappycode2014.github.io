@@ -1,31 +1,688 @@
-/* Додайте ці стилі до вашого styles.css, або переконайтеся, що вони вже там */
+/*
+ * styles.css
+ * Файл стилів для "FrogyBoberShlappyCode2014 - РЖАЧНА ІМПЕРІЯ!"
+ * Шляпний Архітектор Цифрового Безладу заявляє, що тут панує ХАОС та ФІОЛЕТ!
+ */
 
+/* === Змінні Кольорів та Шрифтів === */
+:root {
+    --main-bg-color: #1a0033; /* Дуже темний фіолетовий, майже чорний */
+    --main-text-color: #e0e0e0; /* Світло-сірий для основного тексту */
+    --main-accent: #8a2be2; /* Насичений фіолетовий (мій улюблений!) */
+    --main-accent-light: #a64dff; /* Світліший фіолетовий для світіння */
+    --main-accent-dark: #6a1aab; /* Темніший фіолетовий */
+    --secondary-color: #330066; /* Темно-фіолетовий для елементів */
+    --secondary-color-dark: #220044; /* Ще темніший фіолетовий для футера */
+    --clashing-red: #ff0000; /* Агресивний червоний для небезпеки */
+    --toxic-yellow: #ffff00; /* Яскравий жовтий для "токсичних" елементів */
+    --main-green: #00ff00; /* Кислотно-зелений для "успіху" */
+    --glitch-blue: #00ffff; /* Блакитний для глюків */
+    --glitch-pink: #ff00ff; /* Рожевий для глюків */
+    --border-subtle: #440088; /* Тонкий фіолетовий для меж */
+    --text-secondary: rgba(255, 255, 255, 0.6); /* Напівпрозорий білий */
+
+    /* Шрифти - повна каша, як я люблю */
+    --font-primary: 'Comic Neue', cursive;
+    --font-secondary: 'Roboto', sans-serif;
+    --font-tertiary: 'Arial', sans-serif;
+    --font-quaternary: 'Times New Roman', serif;
+    --font-monospace: 'VT323', monospace; /* Для терміналу, якщо підключено */
+}
+
+/* === Загальні Стилі === */
+body {
+    font-family: var(--font-primary); /* Основний шрифт для тіла */
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Приховуємо горизонтальний скролл від анімацій */
+    position: relative; /* Для позиціонування фонових ефектів */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="%238a2be2" stroke="%23a64dff" stroke-width="1"/></svg>') 12 12, auto; /* Кастомний курсор */
+}
+
+a {
+    color: var(--main-accent-light);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--toxic-yellow);
+    text-shadow: 0 0 5px var(--toxic-yellow);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+    color: var(--main-accent);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    color: var(--main-accent-light);
+}
+
+h2 {
+    font-size: 2.2em;
+    text-align: center;
+    color: var(--main-accent);
+}
+
+h3 {
+    font-size: 1.6em;
+    color: var(--secondary-color-dark);
+}
+
+/* === Секція Заголовка та Вступу === */
+.header {
+    background: linear-gradient(45deg, var(--secondary-color-dark), var(--main-accent));
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px dashed var(--clashing-red);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+}
+
+.header h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.header p {
+    font-size: 1.2em;
+    color: var(--main-text-color);
+    margin-top: 0;
+    font-family: var(--font-quaternary);
+}
+
+.section-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--toxic-yellow);
+    color: var(--toxic-yellow); /* Зробимо заголовок розділу жовтим */
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+    font-family: var(--font-secondary);
+    font-size: 2.5em;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* === Контейнер та Сітка Фіч === */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.intro-section {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+    border: 2px solid var(--main-accent);
+    text-align: center;
+}
+
+.intro-section p {
+    font-size: 1.1em;
+    color: var(--main-text-color);
+    font-family: var(--font-quaternary);
+    margin-bottom: 15px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.feature-card {
+    background-color: var(--secondary-color-dark);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, transparent 70%);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px var(--main-accent-light);
+    background-color: #3f0a7d; /* Трохи світліший при наведенні */
+}
+
+.feature-card h3 {
+    color: var(--main-accent-light);
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-primary);
+}
+
+.feature-card p {
+    font-family: var(--font-tertiary);
+    font-size: 1em;
+    color: var(--main-text-color);
+    text-align: center;
+}
+
+/* === Кнопки та Приховані Списки === */
+.cta-button {
+    display: block;
+    width: fit-content;
+    margin: 40px auto;
+    padding: 15px 30px;
+    background-color: var(--main-accent);
+    color: white;
+    border: 3px solid var(--clashing-red);
+    border-radius: 8px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: var(--font-secondary);
+    animation: pulseGlow 1.5s infinite alternate;
+}
+
+.cta-button:hover {
+    background-color: var(--main-accent-light);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px var(--main-accent-light);
+    border-color: var(--toxic-yellow);
+}
+
+.hidden-wish-list {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px dashed var(--glitch-pink);
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: none; /* Приховано за замовчуванням */
+    animation: fadeIn 0.8s ease-out;
+}
+
+.hidden-wish-list h3 {
+    color: var(--clashing-red);
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px var(--clashing-red);
+    font-family: var(--font-secondary);
+}
+
+.hidden-wish-list ul {
+    list-style: none; /* Прибираємо стандартні маркери */
+    padding: 0;
+    margin: 0;
+}
+
+.hidden-wish-list li {
+    background-color: var(--secondary-color-dark);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid var(--main-accent);
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.1em;
+    color: var(--main-text-color);
+    font-family: var(--font-tertiary);
+}
+
+.hidden-wish-list strong {
+    color: var(--toxic-yellow);
+}
+
+/* === Книга Гостей (Guestbook) === */
+.guestbook-section {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    margin-top: 40px;
+    border: 2px solid var(--glitch-blue);
+}
+
+.guestbook-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.guestbook-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    color: var(--main-accent-light);
+    font-family: var(--font-secondary);
+}
+
+.guestbook-form input[type="text"],
+.guestbook-form textarea {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-subtle);
+    color: var(--main-text-color);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    font-family: var(--font-monospace); /* Моноширинний для введення */
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guestbook-form input[type="text"]:focus,
+.guestbook-form textarea:focus {
+    border-color: var(--main-accent-light);
+    box-shadow: 0 0 8px var(--main-accent-light);
+}
+
+.guestbook-entries {
+    margin-top: 30px;
+}
+
+.guestbook-entry {
+    background-color: var(--secondary-color-dark);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--main-accent-dark);
+    position: relative;
+    overflow: hidden; /* Для ефекту зерна */
+}
+
+.guestbook-entry::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytgpNAAAAFElEQVQIW2NkYGD4zwEGBgaG+A8AAwBfAS1f1i4pAAAAAElFTkSuQmCC') repeat; /* Невелике зерно/шум */
+    opacity: 0.1; /* Ледь помітне */
+    pointer-events: none;
+}
+
+
+.entry-message {
+    font-family: var(--font-primary);
+    font-size: 1.1em;
+    color: var(--main-text-color);
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.entry-date {
+    font-family: var(--font-quaternary);
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    text-align: right;
+    font-style: italic;
+}
+
+/* === Футер та Соціальні Іконки === */
 .footer {
     text-align: center;
     padding: 20px;
-    background-color: var(--secondary-color-dark); /* Темніший колір для футера */
+    background-color: var(--secondary-color-dark);
     color: white;
     font-size: 0.9em;
-    border-top: 2px solid var(--main-accent); /* Фіолетова лінія зверху */
+    border-top: 3px solid var(--main-accent);
     margin-top: 40px;
     position: relative;
-    z-index: 10; /* Щоб був над глюками, якщо вони на весь екран */
+    z-index: 10;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.footer p {
+    margin: 5px 0;
+    font-family: var(--font-tertiary);
+}
+
+.footer .quote {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.1em;
+    margin-top: 15px;
+    color: var(--main-text-color);
 }
 
 .social-icons {
-    margin-top: 15px;
-    margin-bottom: 15px; /* Додамо відступ знизу, щоб іконки не зливалися з текстом */
+    margin: 15px 0 20px 0; /* Відступи для кращої читабельності */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Щоб іконки переносилися на новий рядок на малих екранах */
 }
 
 .social-icons a {
     color: var(--main-accent); /* Фіолетовий колір для іконок */
-    margin: 0 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* Щоб transform працював */
+    margin: 0 12px; /* Збільшимо відступ між іконками */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    display: inline-block; /* Для коректного застосування transform */
+    font-size: 2.2em; /* Збільшимо розмір іконок */
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Ледь помітне світіння */
 }
 
 .social-icons a:hover {
     color: #fff; /* Білий при наведенні */
-    transform: scale(1.2) rotate(10deg); /* Трохи анімації, бо бобри люблять рух */
-    text-shadow: 0 0 8px var(--main-accent-light); /* Світіння при наведенні */
+    transform: scale(1.3) rotate(15deg); /* Більший масштаб та обертання */
+    text-shadow: 0 0 15px var(--main-accent-light), 0 0 25px rgba(255, 255, 255, 0.8); /* Яскравіше світіння */
+}
+
+/* === Фон з Глюками та Оверлеями === */
+.glitch-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQIHWNkYGDY/x8DBoBwAACF6/8zEwAFAABr9QY9gAAAAABJRU5ErkJggg=='); /* Невеликий шаблон для фонового шуму */
+    background-repeat: repeat;
+    opacity: 0; /* За замовчуванням приховано, активується класом */
+    pointer-events: none;
+    z-index: 1;
+    animation: none; /* За замовчуванням вимкнено */
+}
+
+.screen-glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0; /* За замовчуванням приховано, активується класом */
+    background-image: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.2) 50%),
+                      linear-gradient(90deg, rgba(255,0,0,0.1) 50%, rgba(0,255,0,0.1) 50%, rgba(0,0,255,0.1) 50%);
+    background-size: 100% 4px, 4px 100%;
+    animation: none; /* За замовчуванням вимкнено */
+}
+
+/* === Активація Глюків === */
+.activate-glitch-bg .glitch-background {
+    opacity: 0.15; /* Трохи видимий */
+    animation: glitchBackground 5s infinite linear;
+}
+
+.activate-screen-glitch .screen-glitch-overlay {
+    opacity: 0.08; /* Ледь помітний */
+    animation: screenGlitch 0.5s infinite alternate;
+}
+
+/* === Анімації === */
+@keyframes glitchBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+@keyframes screenGlitch {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 5px 5px, -5px -5px;
+    }
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes textShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-1px); }
+}
+
+@keyframes glitchRotate {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(0.5deg); }
+    50% { transform: rotate(-0.5deg); }
+    75% { transform: rotate(0.2deg); }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px var(--main-accent); }
+    50% { box-shadow: 0 0 20px var(--main-accent-light), 0 0 30px var(--clashing-red); }
+    100% { box-shadow: 0 0 10px var(--main-accent); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Прогрес Бар === */
+#progressBarContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--toxic-yellow);
+    transition: width 0.1s linear;
+}
+
+/* === Інженер-Бобер === */
+.engineer-beaver {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--main-accent);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-primary);
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--toxic-yellow);
+    z-index: 100;
+}
+
+.engineer-beaver span[role="img"] {
+    font-size: 1.5em;
+    margin-right: 8px;
+    animation: bob 1s infinite alternate;
+}
+
+@keyframes bob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+/* === Секція Пошуку Google === */
+.google-search-section {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    margin: 40px auto; /* Центруємо та додаємо відступ */
+    max-width: 800px; /* Обмежуємо ширину для кращого вигляду */
+    border: 2px solid var(--toxic-yellow);
+    position: relative;
+    z-index: 5;
+}
+
+.google-search-section .section-title {
+    color: var(--glitch-blue); /* Змінимо колір для пошуку */
+    border-bottom-color: var(--glitch-blue);
+    animation: none; /* Вимкнемо пульсацію для цього заголовка */
+}
+
+.google-search-section .gcse-search {
+    margin-top: 20px;
+}
+
+/* Стилі для Google Custom Search Engine (можливо, доведеться налаштовувати через CSE контролер) */
+.gsc-control-cse, .gsc-search-button, .gsc-search-box {
+    font-family: var(--font-primary) !important;
+}
+.gsc-search-button input.gsc-search-button-v2 {
+    background-color: var(--main-accent) !important;
+    border-color: var(--clashing-red) !important;
+    color: white !important;
+    padding: 8px 15px !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease !important;
+}
+.gsc-search-button input.gsc-search-button-v2:hover {
+    background-color: var(--main-accent-light) !important;
+}
+.gsc-input {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--main-text-color) !important;
+    font-family: var(--font-monospace) !important;
+    padding: 8px !important;
+    border-radius: 5px !important;
+}
+
+
+/* === Медіа-запити для адаптивності (бобри подбають про всі екрани) === */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .header h1 {
+        font-size: 2.8em;
+    }
+
+    .header p {
+        font-size: 1em;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        font-size: 1.2em;
+        padding: 12px 25px;
+    }
+
+    .social-icons a {
+        font-size: 1.8em;
+        margin: 0 8px;
+    }
+
+    .engineer-beaver {
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .header h1 {
+        font-size: 2.2em;
+    }
+
+    .intro-section, .feature-card, .hidden-wish-list, .guestbook-section, .google-search-section {
+        padding: 15px;
+    }
+
+    .cta-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .social-icons a {
+        font-size: 1.5em;
+        margin: 0 5px;
+    }
+}
+
+/* === Стилі для терміналу (якщо використовується в terminal.html, тут для повноти) === */
+/* Ці стилі будуть перезаписані або доповнені в terminal.html, але корисно мати їх тут для загального уявлення */
+body.terminal-page {
+    background-color: #000;
+    color: #0F0;
+    font-family: var(--font-monospace);
+    cursor: none;
+}
+
+#terminal-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid #0F0;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#terminal-input {
+    font-family: var(--font-monospace);
+}
+
+#cursor {
+    background-color: #0F0;
+    animation: blink 0.7s infinite step-end;
+}
+@keyframes blink {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Кастомний курсор для терміналу */
+#custom-cursor {
+    background-color: #0F0;
+    box-shadow: 0 0 5px #0F0, 0 0 10px rgba(0, 255, 0, 0.5);
 }
