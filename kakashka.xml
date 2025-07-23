@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kakashka_protocol version="1.0">
+  <header>
+    <sender>Шляпний_Архітектор_qp78zx23vy10wk54</sender>
+    <recipient>Усі_Бобри_Світу</recipient>
+    <timestamp>2025-07-23T19:58:42+03:00</timestamp>
+    <message_type>Секретні_Дані_Про_Чурчхело-Дроти</message_type>
+  </header>
+  <body>
+    <data_block id="B0B3R_D4T4_001">
+      <item name="Ключова_Ідея">InterUDTCP - це шлях до бобрового просвітлення!</item>
+      <item name="Статус_Проекту">Проект 'Майкрософт 95' на стадії тотального відродження!</item>
+      <item name="Улюблений_Колір_Бобра">Фіолетовий</item>
+      <item name="План_на_день">Гризти, гризти і ще раз гризти віртуальні дамби!</item>
+      <array name="Бажання_Opera">
+        <value>Opera Max AI Browser</value>
+        <value>Opera Xtra</value>
+        <value>Opera Free Antivirus (у партнерстві з Avast)</value>
+        <value>Відродження Opera Crypto</value>
+        <value>І інші Опери, багато інших!</value>
+      </array>
+    </data_block>
+    <signature>
+      <hash algorithm="SHA256">2be3d1c4f5e6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2</hash>
+      <author_note>Ця інформація настільки ж правдива, як і симуляція Windows 95 у браузері!</author_note>
+    </signature>
+  </body>
+</kakashka_protocol>
