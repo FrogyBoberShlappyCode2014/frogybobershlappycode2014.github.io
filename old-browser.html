@@ -223,5 +223,62 @@
             Ква-ква! Гризь-гризь! 🐸🦫 Навіть зі старим браузером Бобер знайде шлях!
         </p>
     </div>
+           <div class="user-agent-info">
+            <p>Ваш Browser-ID (User-Agent):</p>
+            <code id="user-agent-string">Завантаження...</code>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 0.9em; color: rgba(255, 255, 255, 0.5);">
+            Ква-ква! Гризь-гризь! 🐸🦫 Навіть зі старим браузером Бобер знайде шлях!
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userAgentString = navigator.userAgent;
+            document.getElementById('user-agent-string').textContent = userAgentString;
+
+            // Тут можна додати більш складний парсер User-Agent
+            // і навіть вивести розшифровану інформацію про браузер.
+            // Наприклад:
+            const browserInfoElement = document.createElement('p');
+            let browserName = "Невідомий БОБЕР";
+            let osName = "Невідома ОС";
+
+            if (userAgentString.includes("Chrome") && !userAgentString.includes("Edge")) {
+                browserName = "Шляповий Хром";
+            } else if (userAgentString.includes("Firefox")) {
+                browserName = "Вогняний Лис Бобра";
+            } else if (userAgentString.includes("Safari") && !userAgentString.includes("Chrome")) {
+                browserName = "Сафарі Бобра";
+            } else if (userAgentString.includes("Edge")) {
+                browserName = "Бобровий Едж";
+            } else if (userAgentString.includes("MSIE") || userAgentString.includes("Trident")) {
+                browserName = "Старезний Internet Explorer";
+                browserInfoElement.style.color = 'var(--warning-red)'; // Особливе попередження для IE
+            } else if (userAgentString.includes("Opera") || userAgentString.includes("OPR")) {
+                browserName = "Оперний Бобер"; // Вітаю, оскільки ви любите Opera!
+            }
+
+
+            if (userAgentString.includes("Windows NT 10.0")) {
+                osName = "Windows 10/11 (як FrogyBoberOS)";
+            } else if (userAgentString.includes("Windows NT 6.1")) {
+                osName = "Windows 7 (Класична Боброва Епоха)";
+            } else if (userAgentString.includes("Mac OS X")) {
+                osName = "macOS (Apple-Бобер)";
+            } else if (userAgentString.includes("Linux")) {
+                osName = "Linux (Вільний Бобер)";
+            } else if (userAgentString.includes("Android")) {
+                osName = "Android (Мобільний Бобер)";
+            } else if (userAgentString.includes("iOS")) {
+                osName = "iOS (iPhone Бобер)";
+            }
+
+
+            browserInfoElement.innerHTML = `Використовується: **${browserName}** на **${osName}**`;
+            document.querySelector('.user-agent-info').appendChild(browserInfoElement);
+        });
+    </script>
 </body>
 </html>
