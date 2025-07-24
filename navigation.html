@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навігація - Карта РЖАЧНОЇ ІМПЕРІЇ!</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧭%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /*
+         * styles.css for navigation.html
+         * Стилі для Карти РЖАЧНОЇ ІМПЕРІЇ
+         * Шляпний Архітектор вказує шлях!
+         */
+
+        :root {
+            --main-bg-color: #1a0033; /* Дуже темний фіолетовий, майже чорний */
+            --main-text-color: #e0e0e0; /* Світло-сірий для основного тексту */
+            --main-accent: #8a2be2; /* Насичений фіолетовий (мій улюблений!) */
+            --main-accent-light: #a64dff; /* Світліший фіолетовий для світіння */
+            --main-accent-dark: #6a1aab; /* Темніший фіолетовий */
+            --secondary-color: #330066; /* Темно-фіолетовий для елементів */
+            --clashing-red: #ff0000; /* Агресивний червоний для небезпеки */
+            --toxic-yellow: #ffff00; /* Яскравий жовтий для "токсичних" елементів */
+            --border-subtle: #440088; /* Тонкий фіолетовий для меж */
+
+            --font-primary: 'Comic Neue', cursive; /* Якщо підключено */
+            --font-secondary: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-image: url('https://w.forfun.com/fetch/f2/f2a1b417e2e8548d9a26364020a67e41.jpeg'); /* Або ваша улюблена картинка з бобрами/жабами */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .nav-container {
+            background-color: rgba(26, 0, 51, 0.9); /* Трохи прозорий фон */
+            border: 2px solid var(--main-accent-light);
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+            max-width: 800px;
+            width: 90%;
+            margin-top: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h1 {
+            color: var(--toxic-yellow);
+            font-size: 3em;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--toxic-yellow), 0 0 25px var(--clashing-red);
+            font-family: var(--font-primary, cursive);
+            animation: pulseText 2s infinite alternate;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .nav-item {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: var(--main-text-color);
+            font-weight: bold;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            background-color: var(--main-accent);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px var(--main-accent-light);
+        }
+
+        .nav-item i {
+            font-size: 3.5em;
+            color: var(--main-accent-light);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover i {
+            color: var(--toxic-yellow); /* Іконка стає жовтою при наведенні */
+            text-shadow: 0 0 15px var(--toxic-yellow);
+        }
+
+        .nav-item span {
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background-color: var(--clashing-red);
+            color: white;
+            border: 2px solid var(--toxic-yellow);
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: pulseGlowRed 1.5s infinite alternate;
+        }
+
+        .back-button:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px var(--toxic-yellow);
+        }
+
+        /* === Анімації === */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseText {
+            0% { text-shadow: 0 0 10px var(--toxic-yellow), 0 0 20px var(--clashing-red); }
+            50% { text-shadow: 0 0 20px var(--toxic-yellow), 0 0 30px var(--clashing-red), 0 0 40px rgba(255, 255, 0, 0.5); }
+            100% { text-shadow: 0 0 10px var(--toxic-yellow), 0 0 20px var(--clashing-red); }
+        }
+
+        @keyframes pulseGlowRed {
+            0% { box-shadow: 0 0 10px var(--clashing-red); }
+            50% { box-shadow: 0 0 20px var(--clashing-red), 0 0 30px var(--toxic-yellow); }
+            100% { box-shadow: 0 0 10px var(--clashing-red); }
+        }
+
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .nav-container {
+                padding: 20px;
+            }
+            .nav-grid {
+                grid-template-columns: 1fr; /* Одна колонка на малих екранах */
+            }
+            .nav-item i {
+                font-size: 3em;
+            }
+            .nav-item span {
+                font-size: 1.1em;
+            }
+            .back-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <h1><i class="fas fa-map-marked-alt"></i> Карта РЖАЧНОЇ ІМПЕРІЇ! <i class="fas fa-road"></i></h1>
+        <p>Ласкаво просимо, Шляпний досліднику! Тут ви знайдете всі шляхи до скарбів цифрового безладу:</p>
+
+        <div class="nav-grid">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Головна (Центр Хаосу)</span>
+            </a>
+            <a href="index.html#features-section" class="nav-item">
+                <i class="fas fa-star"></i>
+                <span>Особливості Бобрів</span>
+            </a>
+            <a href="index.html#wishlist-section" class="nav-item">
+                <i class="fas fa-gift"></i>
+                <span>Бажання Шляпного Архітектора</span>
+            </a>
+            <a href="index.html#guestbook-section" class="nav-item">
+                <i class="fas fa-book-open"></i>
+                <span>Книга Гостей (Гризь-гризь!)</span>
+            </a>
+            <a href="index.html#google-search-section" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Пошук Google Бобра</span>
+            </a>
+            <a href="windows11.html" target="_blank" class="nav-item">
+                <i class="fas fa-laptop"></i>
+                <span>FrogyBoberOS (Windows 11 Sim)</span>
+            </a>
+            <a href="kakashka.xml" target="_blank" class="nav-item">
+                <i class="fas fa-file-code"></i>
+                <span>Загадкові Дані (Kakashka.xml)</span>
+            </a>
+            </div>
+
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Повернутися до РЖАЧНОЇ ІМПЕРІЇ!</a>
+    </div>
+</body>
+</html>
