@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОЙ! БОБЕР ЗАСТЕРІГАЄ! - РЖАЧНА ІМПЕРІЯ!</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚠️%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* old-browser-warning.css (вбудовано для спрощення) */
+        :root {
+            --main-bg-color: #1a0033; /* Дуже темний фіолетовий */
+            --text-color-light: #e0e0e0; /* Світло-сірий */
+            --warning-red: #ff0000; /* Червоний для попередження */
+            --warning-yellow: #ffff00; /* Жовтий для акценту */
+            --accent-purple: #8a2be2; /* Мій улюблений фіолетовий */
+            --accent-green: #00ff00; /* Яскравий зелений для бобрового життя */
+            --border-glow: #a64dff; /* Світліший фіолетовий для світіння */
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: var(--main-bg-color);
+            color: var(--text-color-light);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Щоб анімації не виходили за межі */
+            position: relative;
+        }
+
+        /* Фонова сітка з ефектом Windows 95 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            animation: backgroundFlicker 5s infinite alternate; /* Мерехтіння фону */
+        }
+
+        .warning-box {
+            background-color: rgba(51, 0, 102, 0.95); /* Темно-фіолетовий, напівпрозорий */
+            border: 5px solid var(--warning-red);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 0 40px var(--warning-yellow), 0 0 60px var(--warning-red);
+            max-width: 700px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+            animation: comeInShaky 1.5s ease-out; /* Приїжджає і трясеться */
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--warning-yellow);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--warning-red), 0 0 20px var(--accent-purple);
+            animation: textGlitch 0.8s infinite alternate; /* Глітч ефект */
+        }
+
+        .icon-large {
+            font-size: 5em;
+            color: var(--warning-red);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--warning-yellow), 0 0 25px var(--accent-purple);
+            animation: iconPulse 1.5s infinite alternate;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-color-light);
+        }
+
+        .p-small {
+            font-size: 1em;
+            margin-top: -15px;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap; /* Дозволяє переносити на менших екранах */
+            justify-content: center;
+            gap: 20px; /* Відстань між кнопками */
+        }
+
+        .warning-button {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 4px solid var(--accent-green);
+            border-radius: 12px;
+            background-color: var(--accent-purple);
+            color: white;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--border-glow);
+            animation: buttonPulse 2s infinite ease-in-out;
+            transform: skew(-5deg); /* Смішний нахил */
+        }
+
+        .warning-button:hover {
+            background-color: var(--border-glow);
+            color: var(--warning-yellow);
+            transform: scale(1.05) skew(-5deg) rotateZ(2deg); /* Ще більш шляповий ефект */
+            box-shadow: 0 0 30px var(--warning-yellow), 0 0 40px var(--accent-green);
+        }
+
+        .warning-button i {
+            margin-right: 10px;
+        }
+
+        /* === Анімації === */
+        @keyframes comeInShaky {
+            0% { transform: scale(0.5) translateY(-200px) rotateZ(10deg); opacity: 0; }
+            50% { transform: scale(1.1) translateY(20px) rotateZ(-5deg); opacity: 1; }
+            75% { transform: scale(0.95) translateY(-10px) rotateZ(3deg); }
+            100% { transform: scale(1) translateY(0) rotateZ(0deg); opacity: 1; }
+        }
+
+        @keyframes textGlitch {
+            0% { text-shadow: 0 0 10px var(--warning-red); transform: translateX(0); }
+            25% { text-shadow: 2px 2px 10px var(--warning-yellow); transform: translateX(-2px); }
+            50% { text-shadow: -2px -2px 10px var(--warning-red); transform: translateX(2px); }
+            75% { text-shadow: 2px -2px 10px var(--warning-yellow); transform: translateX(-1px); }
+            100% { text-shadow: 0 0 10px var(--warning-red); transform: translateX(0); }
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; color: var(--warning-yellow); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes buttonPulse {
+            0% { transform: scale(1) skew(-5deg); }
+            50% { transform: scale(1.02) skew(-5deg); box-shadow: 0 0 25px var(--border-glow), 0 0 35px var(--accent-green); }
+            100% { transform: scale(1) skew(-5deg); }
+        }
+
+        @keyframes backgroundFlicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+
+        /* Медіа-запити для мобільних пристроїв */
+        @media (max-width: 600px) {
+            .warning-box {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .icon-large {
+                font-size: 4em;
+            }
+            p {
+                font-size: 1.1em;
+            }
+            .p-small {
+                font-size: 0.9em;
+            }
+            .warning-button {
+                font-size: 1.1em;
+                padding: 12px 20px;
+                flex-basis: 100%; /* Кожна кнопка на окремому рядку */
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-box">
+        <i class="fas fa-exclamation-triangle icon-large"></i>
+        <h1>ОЙ! БОБЕР ЗАСТЕРІГАЄ!</h1>
+        <p>
+            Схоже, ваш браузер трохи застарий для нашої **РЖАЧНОЇ ІМПЕРІЇ!**
+            <br>
+            Він не може повністю впоратися з усім **цифровим безладом** та **шляповими ефектами**!
+        </p>
+        <p class="p-small">
+            Це означає, що деякі елементи можуть виглядати дивно, не працювати, або просто
+            викликати у вас відчуття, ніби ви повернулись у 1995 рік без симуляції!
+        </p>
+
+        <p>Але не хвилюйтесь, Шляпний досліднику! Ви все ще можете:</p>
+
+        <div class="button-container">
+            <a href="https://t.me/frogybobershlappycode2014" target="_blank" class="warning-button">
+                <i class="fab fa-telegram-plane"></i> Відвідати Telegram-канал
+            </a>
+            <a href="/navigation.html" class="warning-button">
+                <i class="fas fa-map-marked-alt"></i> Дослідити Карту Імперії
+            </a>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 0.9em; color: rgba(255, 255, 255, 0.5);">
+            Ква-ква! Гризь-гризь! 🐸🦫 Навіть зі старим браузером Бобер знайде шлях!
+        </p>
+    </div>
+</body>
+</html>
