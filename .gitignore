@@ -1,0 +1,29 @@
+# Ігнорувати тимчасові файли та файли, що генеруються автоматично
+
+# Загальні файли ОС та IDE
+.DS_Store             # macOS
+Thumbs.db             # Windows
+.vscode/              # VS Code settings
+*.log                 # Log files
+
+# Тимчасові файли редакторів
+*~
+*.swp
+.idea/                # IntelliJ IDE
+.project              # Eclipse
+.classpath
+.settings/
+
+# Node.js залежності (якщо ви використовуєте npm для чогось)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Згенеровані файли/папки (якщо у вас будуть)
+/dist/                # Збірки, якщо ви використовуєте збирачі
+/build/
+
+# Приклад, якщо з'являться якісь локальні "какашки", які не повинні бути в Git
+my_local_test_file.txt
+*.bak
