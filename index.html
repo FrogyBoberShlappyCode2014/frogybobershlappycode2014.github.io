@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrogyBoberShlappyCode2014 - РЖАЧНА ІМПЕРІЯ!</title>
+    
+    <script>
+        // Проста перевірка на підтримку сучасного JavaScript (наприклад, ES6 Arrow Functions)
+        // та наявність базових сучасних API (наприклад, Promise або fetch)
+        function isBrowserTooOld() {
+            try {
+                // Спроба виконати ES6 синтаксис (стрілкова функція)
+                eval('const test = () => {};');
+                // Перевірка на наявність базових сучасних Web API
+                if (!window.Promise || !window.fetch || typeof Symbol === 'undefined' || typeof Map === 'undefined') {
+                    return true; // Немає Promise, fetch, Symbol або Map (типово для дуже старих браузерів)
+                }
+            } catch (e) {
+                // Якщо виникла помилка, браузер, ймовірно, старий (наприклад, Internet Explorer)
+                return true;
+            }
+            // Додаткові перевірки User-Agent на дуже старі або специфічні браузери
+            const userAgent = navigator.userAgent;
+            if (userAgent.includes("MSIE") || userAgent.includes("Trident")) { // Internet Explorer
+                return true;
+            }
+            // Можете додати інші критерії, наприклад, мінімальну версію Chrome/Firefox
+            // if (userAgent.includes("Chrome/")) {
+            //     const chromeVersion = parseInt(userAgent.match(/Chrome\/(\d+)/)[1]);
+            //     if (chromeVersion < 80) return true; // Приклад: Chrome до 80 версії вважаємо застарілим
+            // }
+            // Додамо перевірку на старі версії Opera (якщо потрібно)
+            if (userAgent.includes("Opera/") && !userAgent.includes("OPR/")) { // Стара Opera Presto engine
+                 const operaVersion = parseFloat(userAgent.match(/Opera\/(\d+\.\d+)/)?.[1]);
+                 if (operaVersion && operaVersion < 15) return true; // Опера до переходу на Chromium
+            }
+
+            return false;
+        }
+
+        if (isBrowserTooOld()) {
+            // Використовуйте replace, щоб запобігти поверненню назад на нефункціональну сторінку
+            window.location.replace('/old-browser.html');
+        }
+            </script>
     <link href="https://fonts.googleapis.com/css2?family=Arial&family=Comic+Neue:wght@400;700&family=Times+New+Roman&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤮💩%3C/text%3E%3C/svg%3E">
