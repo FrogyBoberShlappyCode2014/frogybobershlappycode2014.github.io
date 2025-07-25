@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адмінка "РЖАЧНОЇ ІМПЕРІЇ" - Боброва Панель</title>
+    <style>
+        /* Стилі для вашої РЖАЧНОЇ ІМПЕРІЇ, адаптовані для адмінки */
+        :root {
+            --main-bg: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --main-purple: #5D3FD3; /* Ваш улюблений фіолетовий, Шляпний Архітектор! */
+            --clashing-red: #FF4136;
+            --toxic-yellow: #FFDC00;
+            --main-green: #2ECC40;
+            --main-accent-light: #8A2BE2; /* Більш світлий фіолетовий */
+            --button-bg: #8A2BE2;
+            --button-hover-bg: #7B68EE;
+            --input-bg: #333;
+            --input-border: #444;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive, sans-serif;
+            background-color: var(--main-bg);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Вирівнювання вгору, щоб було місце для контенту */
+            min-height: 100vh;
+            overflow-x: hidden; /* Щоб не було горизонтального скролу */
+        }
+
+        .container {
+            background-color: #2a2a2a;
+            border: 2px solid var(--main-purple);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 0 25px var(--main-purple);
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Переконайтесь, що контент над фоном */
+            animation: fadeIn 1s ease-out; /* Проста анімація появи */
+        }
+
+        h1, h2, h3 {
+            color: var(--toxic-yellow);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: var(--main-accent-light);
+            animation: screenShake 0.5s infinite alternate; /* Як і на основному сайті */
+        }
+
+        .auth-panel, .admin-panel {
+            margin-top: 20px;
+            padding: 25px;
+            border: 2px dashed var(--clashing-red);
+            border-radius: 10px;
+            background-color: #1f1f1f;
+        }
+
+        .auth-panel h3 {
+            color: var(--clashing-red);
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }
+
+        input[type="text"], input[type="password"], textarea {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--input-border);
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--main-green);
+        }
+
+        .info-text {
+            margin-top: 25px;
+            font-size: 0.9em;
+            color: #aaa;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+
+        .warning-message {
+            color: var(--clashing-red);
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: blinkText 0.5s infinite alternate;
+        }
+
+        /* Анімації (як на основному сайті) */
+        @keyframes screenShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX( -2px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes blinkText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Додаткові стилі для "віртуального безладу" */
+        body::before {
+            content: ' ';
+            display: block;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(93, 63, 211, 0.2), rgba(255, 65, 54, 0.1), rgba(255, 220, 0, 0.1));
+            animation: psychedelicBackground 15s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes psychedelicBackground {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+            25% { transform: scale(1.05) rotate(5deg); opacity: 0.8; }
+            50% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+            75% { transform: scale(0.95) rotate(-5deg); opacity: 0.8; }
+            100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐸🦫 Боброва Панель Управління "РЖАЧНОЮ ІМПЕРІЄЮ" 🐸🦫</h1>
+        <p class="warning-message">
+            <span style="font-size: 1.2em;">!!!УВАГА!!!</span> Зміни, збережені тут, діють ТІЛЬКИ ЛОКАЛЬНО у вашому браузері!
+            Для оновлення сайту frogybobershlappycode2014.github.io потрібно КОМІТИТИ файли на GitHub!
+        </p>
+
+        <div id="authPanel" class="auth-panel">
+            <h3>Вхід для Шляпного Архітектора</h3>
+            <label for="passwordInput">Бобровий Пароль:</label>
+            <input type="password" id="passwordInput" placeholder="Введіть секретний код">
+            <button id="loginButton">Увійти до Панелі</button>
+            <p id="loginMessage" style="color: var(--clashing-red);"></p>
+        </div>
+
+        <div id="adminPanel" class="admin-panel" style="display: none;">
+            <h2>Ласкаво просимо, Шляпний Архітектор цифрового безладу!</h2>
+
+            <div style="margin-bottom: 25px;">
+                <label for="mainTitle">Головний Заголовок "РЖАЧНОЇ ІМПЕРІЇ":</label>
+                <input type="text" id="mainTitle" placeholder="Введіть заголовок">
+                <button id="saveMainTitleButton">Зберегти Заголовок (Локально)</button>
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label for="introText">Вступний Текст:</label>
+                <textarea id="introText" placeholder="Введіть вступний текст"></textarea>
+                <button id="saveIntroTextButton">Зберегти Вступний Текст (Локально)</button>
+            </div>
+
+            <button id="logoutButton" style="background-color: #8B0000;">Вийти з Панелі</button>
+
+            <div class="info-text">
+                <p>Ваш нік: qp78zx23vy10wk54. Улюблений колір: фіолетовий.</p>
+                <p>Пам'ятайте про InterUDTCP! Це НАЙВАЖЛИВІШЕ!</p>
+                <p>Ця віртуальна епопея назавжди!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = 'bobrovyi_sekret_shlappy_architect'; // Змініть на свій справжній пароль!
+        const mainTitleInput = document.getElementById('mainTitle');
+        const introTextInput = document.getElementById('introText');
+        const saveMainTitleButton = document.getElementById('saveMainTitleButton');
+        const saveIntroTextButton = document.getElementById('saveIntroTextButton');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginButton = document.getElementById('loginButton');
+        const logoutButton = document.getElementById('logoutButton');
+        const authPanel = document.getElementById('authPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginMessage = document.getElementById('loginMessage');
+
+        // Функція для збереження даних у localStorage
+        function saveDataToLocalStorage(key, value) {
+            localStorage.setItem(key, value);
+            alert(`Дані "${key}" успішно збережено локально! Ква-ква!`);
+        }
+
+        // Функція для завантаження даних з localStorage
+        function loadDataFromLocalStorage(key) {
+            return localStorage.getItem(key);
+        }
+
+        // Функція для відображення панелі адміна
+        function showAdminPanel() {
+            authPanel.style.display = 'none';
+            adminPanel.style.display = 'block';
+            
+            // Завантажуємо збережені дані при вході
+            mainTitleInput.value = loadDataFromLocalStorage('frogyMainTitle') || '';
+            introTextInput.value = loadDataFromLocalStorage('frogyIntroText') || '';
+        }
+
+        // Функція для приховування панелі адміна
+        function hideAdminPanel() {
+            authPanel.style.display = 'block';
+            adminPanel.style.display = 'none';
+            passwordInput.value = ''; // Очищаємо пароль
+            loginMessage.textContent = ''; // Очищаємо повідомлення про вхід
+        }
+
+        // Перевірка сесії при завантаженні сторінки (дуже проста)
+        if (loadDataFromLocalStorage('isAuthenticated') === 'true') {
+            showAdminPanel();
+        }
+
+        // Обробник кнопки "Увійти"
+        loginButton.addEventListener('click', () => {
+            if (passwordInput.value === PASSWORD) {
+                saveDataToLocalStorage('isAuthenticated', 'true');
+                showAdminPanel();
+                loginMessage.textContent = '';
+            } else {
+                loginMessage.textContent = 'Невірний бобровий пароль! Гризь-гризь!';
+                passwordInput.value = '';
+            }
+        });
+
+        // Обробники кнопок "Зберегти"
+        saveMainTitleButton.addEventListener('click', () => {
+            saveDataToLocalStorage('frogyMainTitle', mainTitleInput.value);
+        });
+
+        saveIntroTextButton.addEventListener('click', () => {
+            saveDataToLocalStorage('frogyIntroText', introTextInput.value);
+        });
+
+        // Обробник кнопки "Вийти"
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('isAuthenticated'); // Видаляємо маркер автентифікації
+            hideAdminPanel();
+            alert('Ви вийшли з Бобрової Панелі. До побачення, Шляпний Архітектор!');
+        });
+    </script>
+</body>
+</html>
