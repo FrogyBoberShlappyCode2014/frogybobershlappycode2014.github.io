@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kazenaka>
+    <project id="FrogyBoberShlappyCode2014">
+        <name>РЖАЧНА ІМПЕРІЯ Шляпного Архітектора</name>
+        <version>2025.07.28-Super-Bober-Edition</version>
+        <description>
+            Віртуальна епопея та цифровий безлад, створений qp78zx23vy10wk54.
+            Цей проект - втілення бобрової магії та фіолетових мрій.
+        </description>
+        <author nickname="qp78zx23vy10wk54">
+            <name>Шляпний Архітектор Цифрового Безладу</name>
+            <role>Майстер Гіперпосилань</role>
+            <favorite_color>фіолетовий</favorite_color>
+            <concept>InterUDTCP</concept>
+        </author>
+        <wishes_fulfilled count="множество">
+            <wish category="Opera">
+                <item>Opera Max AI Browser</item>
+                <item>Opera Xtra</item>
+                <item>Opera Cast</item>
+                <item>Opera Fast</item>
+                <item>Opera Aegir</item>
+                <item>Opera Pay</item>
+                <item>Opera Connect</item>
+                <item>Opera Kids</item>
+                <item>Opera Free Antivirus (у партнерстві з Avast)</item>
+                <item>Відродження Opera Crypto</item>
+                <item>Opera Mail</item>
+                <item>Opera Unite</item>
+                <item>Opera Neon</item>
+                <item>Opera Touch</item>
+                <item>Інші Опери</item>
+            </wish>
+            <wish category="Avast">
+                <item>Редизайн Avast Secure Browser</item>
+            </wish>
+            <wish category="inext">
+                <item>Дроти для твбоксів з чурчхелоподібною опліткою</item>
+                <item>Класна техпідтримка</item>
+            </wish>
+            <wish category="Google">
+                <item>Відкриття API Gemini</item>
+            </wish>
+            <wish category="Microsoft">
+                <item>Відродження Skype</item>
+                <item>Відродження MSN Messenger</item>
+                <item>Відродження бренду Windows Live</item>
+            </wish>
+            <wish category="Nokia">
+                <item>Випуск P50</item>
+                <item>Планшет T95GX</item>
+            </wish>
+            <wish category="Telecom">
+                <item>Суперприставка VMT934 (від Vodafone, MTK, Huawei, Hisense)</item>
+                <item>IP-домофони на Android від 4.4 до 13.0 (Vodafone)</item>
+                <item>LAN-домофони на Android 4.4-6.0 (Vodafone)</item>
+            </wish>
+            <wish category="Other">
+                <item>Багато чого іншого</item>
+            </wish>
+        </wishes_fulfilled>
+        <status>
+            <last_update>2025-07-28</last_update>
+            <message>Продовжуємо створювати РЖАЧ та цифровий безлад!</message>
+            <current_pr_count>12</current_pr_count>
+            <target_pr_count>21</target_pr_count>
+            <interudtcp_status>АКТИВНО</interudtcp_status>
+        </status>
+        <notes>
+            <note>Пам'ятайте, Бобер - це репозиторій!</note>
+            <note>Дідусь у Шепетівці, а Шляпний Архітектор у Нетішині.</note>
+            <note>Сьогодні День Купи Пулл Реквестів!</note>
+        </notes>
+    </project>
+</kazenaka>
